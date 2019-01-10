@@ -77,6 +77,33 @@ const heatMap = (() => {
     ]
 })()
 
+const excludeMovesMap = (() => {
+    let _ = null
+    let O = (bnum, wnum) => ({bnum, wnum})
+
+    return [
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,O(1,-1),O(0,1),O(1,1),_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,O(-1,0),O(1,-1),O(-1,-1),_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,O(-1,1),O(-1,1),O(10,-10),_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,O(1,1),_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,O(0,1),_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,O(40,0),_,_,_,_,_,_,_,_,_],
+        [_,O(1,0),_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,O(1,0),_,_,_,_,_,_,_,O(50,50),_,_,_,_,_,O(5,0),_,_,_],
+        [_,O(1,0),_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+        [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_]
+    ]
+})()
+
 const markerMap = (() => {
     let _ = null
     let O = {type: 'circle'}
@@ -183,6 +210,9 @@ class App extends Component {
             showGhostStones: false,
             showLines: false,
             showSelection: false,
+            showExcludeMovesMap: false,
+            showExcludeMovesVertices: false,
+            showExcludeMovesMode: false,
             isBusy: false
         }
 
@@ -193,7 +223,7 @@ class App extends Component {
         let {vertexSize, showCoordinates, alternateCoordinates, showCorner,
             showDimmedStones, fuzzyStonePlacement, animateStonePlacement, showPaintMap,
             showHeatMap, showMarkerMap, showGhostStones,
-            showLines, showSelection} = this.state
+            showLines, showSelection, showExcludeMovesMap, showExcludeMovesVertices, showExcludeMovesMode} = this.state
 
         return h('section',
             {
@@ -262,6 +292,9 @@ class App extends Component {
                 h(this.CheckBox, {stateKey: 'showHeatMap', text: 'Show heat map'}),
                 h(this.CheckBox, {stateKey: 'showLines', text: 'Show lines'}),
                 h(this.CheckBox, {stateKey: 'showSelection', text: 'Show selection'}),
+                h(this.CheckBox, {stateKey: 'showExcludeMovesMap', text: 'Show exclude moves map'}),
+                h(this.CheckBox, {stateKey: 'showExcludeMovesVertices', text: 'Show exclude selection'}),
+                h(this.CheckBox, {stateKey: 'showExcludeMovesMode', text: 'Show exclude mode as allow'}),
                 h(this.CheckBox, {stateKey: 'isBusy', text: 'Busy'})
             ),
 
@@ -298,6 +331,17 @@ class App extends Component {
                     selectedVertices: showSelection ? [
                         [9, 7]
                     ] : [],
+
+                    excludeMovesVertices: showExcludeMovesVertices ? [
+                        [1, 16], [2, 16], [3, 16],
+                        [1, 17], [2, 17], [3, 17],
+                        [16, 2]
+                    ] : [],
+
+                    excludeMovesMap: showExcludeMovesMap && excludeMovesMap,
+
+                    excludeMovesMode: showExcludeMovesMode ?
+                        'allow' : 'avoid',
 
                     onVertexClick: (evt, [x, y]) => {
                         let signMap = JSON.parse(JSON.stringify(this.state.signMap))

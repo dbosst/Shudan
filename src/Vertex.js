@@ -21,6 +21,7 @@ class Vertex extends Component {
 
     render() {
         let {shift, random, sign, selected, heat,
+            exclude, excludeVertex, excludeMode,
             paint, dimmed, marker, ghostStone, animate} = this.props
 
         let markerMarkup = z => !!marker && h('div', {
@@ -46,6 +47,9 @@ class Vertex extends Component {
                         [`shudan-paint_${paint}`]: !!paint,
                         'shudan-dimmed': dimmed,
                         'shudan-selected': selected,
+                        'shudan-excludeVertex': excludeVertex,
+                        'shudan-exclude': exclude,
+                        [`shudan-heat_${!!heat && heat.strength}`]: !!heat,
                         'shudan-animate': animate
                     },
 
@@ -90,7 +94,14 @@ class Vertex extends Component {
                 key: 'heatlabel',
                 className: 'shudan-heatlabel',
                 style: absoluteStyle(6)
-            }, heat.text && heat.text.toString())
+            }, heat.text && heat.text.toString()),
+
+            !!excludeMode && !!exclude && exclude.bnum > 0 && h('div', {key: 'excludeB', className: 'shudan-excludeAvoidB', style: absoluteStyle(7)}),
+            !!excludeMode && !!exclude && exclude.wnum > 0 && h('div', {key: 'excludeW', className: 'shudan-excludeAvoidW', style: absoluteStyle(7)}),
+            !!excludeMode && !!exclude && exclude.bnum < 0 && h('div', {key: 'excludeB', className: 'shudan-excludeAllowB', style: absoluteStyle(7)}),
+            !!excludeMode && !!exclude && exclude.wnum < 0 && h('div', {key: 'excludeW', className: 'shudan-excludeAllowW', style: absoluteStyle(7)}),
+            !!excludeMode && !!excludeVertex && excludeMode === 'avoid' && h('div', {key: 'excludeVertex', className: 'shudan-excludeVertexAvoid', style: absoluteStyle(8)}),
+            !!excludeMode && !!excludeVertex && excludeMode === 'allow' && h('div', {key: 'excludeVertex', className: 'shudan-excludeVertexAllow', style: absoluteStyle(8)})
         )
     }
 }

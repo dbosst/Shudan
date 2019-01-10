@@ -64,6 +64,9 @@ class Goban extends Component {
             showCoordinates = false,
             lines = [],
             selectedVertices = [],
+            excludeMovesVertices = [],
+            excludeMovesMap = [],
+            excludeMovesMode = null,
             dimmedVertices = []
         } = this.props
 
@@ -139,6 +142,9 @@ class Goban extends Component {
                             random: randomMap && randomMap[y] && randomMap[y][x],
                             sign: signMap && signMap[y] && signMap[y][x],
                             heat: heatMap && heatMap[y] && heatMap[y][x],
+                            exclude: excludeMovesMode && excludeMovesMap[y] && excludeMovesMap[y][x],
+                            excludeVertex: excludeMovesMode && excludeMovesVertices.some(equalsVertex),
+                            excludeMode: excludeMovesMode,
                             paint: paintMap && paintMap[y] && paintMap[y][x],
                             marker: markerMap && markerMap[y] && markerMap[y][x],
                             ghostStone: ghostStoneMap && ghostStoneMap[y] && ghostStoneMap[y][x],

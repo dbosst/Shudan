@@ -430,6 +430,96 @@
     background: rgba(0, 130, 240, .2);
 }
 
+/* Exclude moves */
+
+.shudan-vertex .shudan-excludeVertexAvoid {
+    left: -.1em;
+    right: -.1em;
+    top: -.1em;
+    bottom: -.1em;
+    border: .1em solid #00F082;
+    border-radius: 3px;
+}
+
+.shudan-vertex .shudan-excludeVertexAllow {
+    left: -.1em;
+    right: -.1em;
+    top: -.1em;
+    bottom: -.1em;
+    height: calc(100% - .1em);
+    width: calc(100% - .1em);
+    border: .1em solid #FE0000;
+    border-radius: 3px;
+}
+
+/* Exclude moves */
+
+.shudan-vertex .shudan-excludeVertexAvoid {
+    left: -.05em;
+    right: 0em;
+    top: -.05em;
+    bottom: 0em;
+    height: calc(100% - .1em);
+    width: calc(100% - .1em);
+    border: .1em solid #FE0000;
+    border-radius: 3px;
+}
+
+.shudan-vertex .shudan-excludeVertexAllow {
+    left: -.05em;
+    right: 0em;
+    top: -.05em;
+    bottom: 0em;
+    height: calc(100% - .1em);
+    width: calc(100% - .1em);
+    border: .1em solid #00F082;
+    border-radius: 3px;
+}
+
+.shudan-vertex .shudan-excludeAllowB {
+    left: 0em;
+    right: 0em;
+    top: 0em;
+    bottom: 0em;
+    height: calc(100% - .32em);
+    width: calc(100% - .32em);
+    border: .16em solid #666666;
+    border-radius: 0px;
+}
+
+.shudan-vertex .shudan-excludeAllowW {
+    left: 0em;
+    right: 0em;
+    top: 0em;
+    bottom: 0em;
+    height: calc(100% - .12em);
+    width: calc(100% - .12em);
+    border: .06em solid #ffffff;
+    border-radius: 0px;
+}
+
+.shudan-vertex .shudan-excludeAvoidB {
+    left: 0em;
+    right: 0em;
+    top: 0em;
+    bottom: 0em;
+    height: calc(100% - .32em);
+    width: calc(100% - .32em);
+    border: .16em dashed #666666;
+    border-radius: 0px;
+}
+
+.shudan-vertex .shudan-excludeAvoidW {
+    left: 0em;
+    right: 0em;
+    top: 0em;
+    bottom: 0em;
+    height: calc(100% - .12em);
+    width: calc(100% - .12em);
+    border: .06em dashed #ffffff;
+    border-radius: 0px;
+}
+
 /* Lines & arrows */
 
 .shudan-line,
