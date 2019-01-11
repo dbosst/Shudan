@@ -96,12 +96,12 @@ class Vertex extends Component {
                 style: absoluteStyle(6)
             }, heat.text && heat.text.toString()),
 
-            !!excludeMode && !!exclude && exclude.bnum > 0 && h('div', {key: 'excludeB', className: 'shudan-excludeAvoidB', style: absoluteStyle(7)}),
-            !!excludeMode && !!exclude && exclude.wnum > 0 && h('div', {key: 'excludeW', className: 'shudan-excludeAvoidW', style: absoluteStyle(7)}),
             !!excludeMode && !!exclude && exclude.bnum < 0 && h('div', {key: 'excludeB', className: 'shudan-excludeAllowB', style: absoluteStyle(7)}),
             !!excludeMode && !!exclude && exclude.wnum < 0 && h('div', {key: 'excludeW', className: 'shudan-excludeAllowW', style: absoluteStyle(7)}),
-            !!excludeMode && !!excludeVertex && excludeMode === 'avoid' && h('div', {key: 'excludeVertex', className: 'shudan-excludeVertexAvoid', style: absoluteStyle(8)}),
-            !!excludeMode && !!excludeVertex && excludeMode === 'allow' && h('div', {key: 'excludeVertex', className: 'shudan-excludeVertexAllow', style: absoluteStyle(8)})
+            !!excludeMode && !!exclude && exclude.bnum > 0 && h('div', {key: 'excludeB', className: 'shudan-excludeAvoidB', style: absoluteStyle(8)}),
+            !!excludeMode && !!exclude && exclude.wnum > 0 && h('div', {key: 'excludeW', className: 'shudan-excludeAvoidW', style: absoluteStyle(8)}),
+            !!excludeMode && !!excludeVertex && excludeMode === 'avoid' && h('div', {key: 'excludeVertex', className: 'shudan-excludeVertexAvoid', style: absoluteStyle(9)}),
+            !!excludeMode && !!excludeVertex && excludeMode === 'allow' && h('div', {key: 'excludeVertex', className: 'shudan-excludeVertexAllow', style: absoluteStyle(9)})
         )
     }
 }
